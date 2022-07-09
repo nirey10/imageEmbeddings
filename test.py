@@ -15,8 +15,8 @@ import random
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 output_folder = 'output'
-weights_name = 'model.pt'
-test_num = 10
+weights_name = 'model3.pt'
+test_num = 100
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
