@@ -1,9 +1,10 @@
 import torchvision
 import torch
-from model2 import AutoEncoder
+from model import AutoEncoder
 import torch.optim as optim
 import torch.nn as nn
 from dataloader import TinyImageNetDataset
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -29,11 +30,11 @@ criterion = nn.MSELoss()
 epochs = 10
 
 train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=16, shuffle=True, num_workers=4
+    train_dataset, batch_size=64, shuffle=True
 )
 
 test_loader = torch.utils.data.DataLoader(
-    test_dataset, batch_size=16, shuffle=False, num_workers=4
+    test_dataset, batch_size=16, shuffle=False
 )
 
 for epoch in range(epochs):
@@ -63,9 +64,9 @@ for epoch in range(epochs):
         # add the mini-batch training loss to epoch loss
         loss += train_loss.item()
 
-        if i % 1000 == 0:
+        if i % 100 == 0:
             print("iteration : {}, loss = {:.6f}".format(i + 1, train_loss.item()))
-            torch.save(model.state_dict(), "model.pt")
+            torch.save(model.state_dict(), "model2.pt")
             #model.load_state_dict(torch.load("model.pt"), strict=False)
 
     # compute the epoch training loss
